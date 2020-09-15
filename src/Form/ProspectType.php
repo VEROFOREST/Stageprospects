@@ -20,6 +20,8 @@ class ProspectType extends AbstractType
             ->add('email')
             ->add('pwd')
             ->add('login')
+            ->add('nom')
+            ->add('prenom')
             ->add('adresse')
             ->add('cp')
             ->add('ville')
