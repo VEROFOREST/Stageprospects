@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prospect{% endblock %}
+
+{% block body %}
+    <h1>Prospect</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ prospect.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ prospect.email }}</td>
+            </tr>
+            <tr>
+                <th>Pwd</th>
+                <td>{{ prospect.pwd }}</td>
+            </tr>
+            <tr>
+                <th>Login</th>
+                <td>{{ prospect.login }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ prospect.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Cp</th>
+                <td>{{ prospect.cp }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ prospect.ville }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ prospect.tel }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ prospect.role }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ prospect.actif }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ prospect.createdAt ? prospect.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('prospect_index') }}">back to list</a>
+
+    <a href="{{ path('prospect_edit', {'id': prospect.id}) }}">edit</a>
+
+    {{ include('prospect/_delete_form.html.twig') }}
+{% endblock %}

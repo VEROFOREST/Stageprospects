@@ -69,31 +69,31 @@ class Prospect
 
     /**
      * @ORM\ManyToOne(targetEntity=Profil::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $profil;
 
     /**
      * @ORM\OneToOne(targetEntity=Parcours::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $parcours;
 
     /**
      * @ORM\ManyToOne(targetEntity=ConnuPar::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $connuPar;
 
     /**
      * @ORM\ManyToOne(targetEntity=Membre::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $membre;
 
     /**
      * @ORM\ManyToOne(targetEntity=Etape::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $etape;
 
@@ -280,5 +280,8 @@ class Prospect
         $this->etape = $etape;
 
         return $this;
+    }
+    public function __toString() {
+    return $this->nom;
     }
 }
