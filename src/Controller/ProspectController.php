@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Parcours;
 use App\Entity\Prospect;
 use App\Form\ProspectType;
 use App\Repository\ProspectRepository;
@@ -9,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/prospect")
@@ -28,14 +30,17 @@ class ProspectController extends AbstractController
     /**
      * @Route("/new", name="prospect_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Parcours $parcours, Request $request): Response
     {
         $prospect = new Prospect();
         $form = $this->createForm(ProspectType::class, $prospect);
         $form->handleRequest($request);
-
+         dd($prospect->getParcours());
+       
         if ($form->isSubmitted() && $form->isValid()) {
+           
             $entityManager = $this->getDoctrine()->getManager();
+            
             $entityManager->persist($prospect);
             $entityManager->flush();
 
@@ -44,6 +49,7 @@ class ProspectController extends AbstractController
 
         return $this->render('prospect/new.html.twig', [
             'prospect' => $prospect,
+            'parcours'=>$parcours,
             'form' => $form->createView(),
         ]);
     }

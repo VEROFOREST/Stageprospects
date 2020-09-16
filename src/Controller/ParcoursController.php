@@ -33,18 +33,20 @@ class ParcoursController extends AbstractController
         $parcour = new Parcours();
         $form = $this->createForm(ParcoursType::class, $parcour);
         $form->handleRequest($request);
-
+          
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $parcour->setId();
             $entityManager->persist($parcour);
             $entityManager->flush();
 
-            return $this->redirectToRoute('parcours_index');
+            return $this->redirectToRoute('parcours_new');
         }
 
         return $this->render('parcours/new.html.twig', [
             'parcour' => $parcour,
             'form' => $form->createView(),
+            
         ]);
     }
 

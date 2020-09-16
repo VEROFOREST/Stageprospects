@@ -227,4 +227,12 @@ class Parcours
 
         return $this;
     }
+    
+    public function setId(): self
+    {	
+    $id = md5(random_bytes(50));
+    $this->id = $id;
+
+    return $this;
+    }
 }
