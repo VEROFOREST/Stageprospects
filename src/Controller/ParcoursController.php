@@ -40,11 +40,12 @@ class ParcoursController extends AbstractController
             $entityManager->persist($parcour);
             $entityManager->flush();
 
-            return $this->redirectToRoute('parcours_new');
+            return $this->redirectToRoute('prospect_new',['id'=> $parcour->getId()]);
         }
 
         return $this->render('parcours/new.html.twig', [
             'parcour' => $parcour,
+            
             'form' => $form->createView(),
             
         ]);

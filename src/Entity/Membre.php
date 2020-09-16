@@ -55,4 +55,12 @@ class Membre
 
         return $this;
     }
+    public function setId($id): self
+    {	
+    $id = 1;
+    $this->id = $id;
+
+    return $this;
+    }
+    
 }

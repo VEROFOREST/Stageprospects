@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Membre;
 use App\Entity\Parcours;
 use App\Entity\Prospect;
 use App\Form\ProspectType;
@@ -10,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @Route("/prospect")
@@ -28,18 +29,26 @@ class ProspectController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="prospect_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="prospect_new", methods={"GET","POST"})
      */
-    public function new(Parcours $parcours, Request $request): Response
+    public function new( Parcours $parcour, Request $request): Response
     {
         $prospect = new Prospect();
         $form = $this->createForm(ProspectType::class, $prospect);
         $form->handleRequest($request);
-         dd($prospect->getParcours());
+        $date = new \DateTime('@'.strtotime('now'));
+       
+      
        
         if ($form->isSubmitted() && $form->isValid()) {
            
             $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($prospect->setParcours($parcour));
+            $entityManager->persist($prospect->setCreatedAt($date));
+            
+            
+            $entityManager->persist($prospect->setRole(2));
+            $entityManager->persist($prospect->setActif(-2));
             
             $entityManager->persist($prospect);
             $entityManager->flush();
@@ -49,7 +58,7 @@ class ProspectController extends AbstractController
 
         return $this->render('prospect/new.html.twig', [
             'prospect' => $prospect,
-            'parcours'=>$parcours,
+            'parcours'=>$parcour,
             'form' => $form->createView(),
         ]);
     }

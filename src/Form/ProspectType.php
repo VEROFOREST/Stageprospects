@@ -62,14 +62,14 @@ class ProspectType extends AbstractType
             ->add('membre',HiddenType::class,[],
                         EntityType::class, array(
                     'class' => Membre::class,
-                    'choice_label' => 'nom',
+                    'choice_label' => 'id',
                     'multiple'  => false,
             ))
             ->add('etape',
                     HiddenType::class,[],
                     EntityType::class, array(
                     'class' => Etape::class,
-                    'choice_label' => 'nom',
+                    'choice_label' => 'id',
                     'multiple'  => false,
             ))
         ;
