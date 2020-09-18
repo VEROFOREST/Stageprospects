@@ -6,12 +6,15 @@ use App\Entity\Membre;
 use App\Entity\Parcours;
 use App\Entity\Prospect;
 use App\Form\ProspectType;
+use App\Repository\EtapeRepository;
+use App\Repository\MembreRepository;
 use App\Repository\ProspectRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
+
 
 /**
  * @Route("/prospect")
@@ -31,25 +34,28 @@ class ProspectController extends AbstractController
     /**
      * @Route("/new/{id}", name="prospect_new", methods={"GET","POST"})
      */
-    public function new( Parcours $parcour, Request $request): Response
+    public function new(Parcours $parcour, Request $request, MembreRepository $membreRepository, EtapeRepository $etapeRepository): Response
     {
         $prospect = new Prospect();
         $form = $this->createForm(ProspectType::class, $prospect);
         $form->handleRequest($request);
         $date = new \DateTime('@'.strtotime('now'));
        
-      
+        $membres = $membreRepository->findBy(['id'=>1]);
+        $etapes = $etapeRepository->findBy(['id'=>1]);
+        
+        //  dd($membres[0]);
+        
        
         if ($form->isSubmitted() && $form->isValid()) {
            
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($prospect->setParcours($parcour));
-            $entityManager->persist($prospect->setCreatedAt($date));
-            
-            
-            $entityManager->persist($prospect->setRole(2));
-            $entityManager->persist($prospect->setActif(-2));
-            
+            $prospect->setParcours($parcour);
+            $prospect->setCreatedAt($date);
+            $prospect->setMembre($membres[0]);
+            $prospect->setEtape($etapes[0]);
+            $prospect->setRole(2);
+            $prospect->setActif(-2);
             $entityManager->persist($prospect);
             $entityManager->flush();
 
