@@ -30,7 +30,7 @@
     <div class="form-row">    
         <div class="form-group col-md-4">
             {{form_label(form.handicap, 'situation de handiap', { 'attr': {'class': 'foo'} }) }}
-            {{ form_widget(form.handicap, {'attr': {'class': "form-control", 'placeholder': "oui/non"}}) }}
+            {{ form_widget(form.handicap, {'attr': {'class': "form-control"}}) }}
         </div>
     
         <div class="form-group col-md-6">
@@ -39,9 +39,9 @@
         </div>
     </div>
      <div class="form-row"> 
-        <div class="form-group col-md-4">
-            {{form_label(form.cv, 'curriculum-Vitae', { 'attr': {'class': 'foo'} }) }}
-            {{ form_widget(form.cv, {'attr': {'class': "form-control", 'placeholder': "oui/non"}}) }}
+        <div class="form-group col-md-6">
+            {{form_label(form.cv, 'télécharger votre CV', { 'attr': {'class': 'foo'} }) }}
+            {{ form_widget(form.cv, {'attr': {'class': "form-control"}}) }}
         </div>
     </div>
     <div class="form-row">

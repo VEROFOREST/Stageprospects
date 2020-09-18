@@ -26,8 +26,8 @@ class ParcoursType extends AbstractType
             ->add('handicap',ChoiceType::class, [
                 'choices'  => [
                  
-                'Oui' => true,
-                'Non' => false,
+                    'Non' => false,
+                    'Oui' => true,
                 ],
                 ])
             ->add('remarque')
@@ -49,7 +49,7 @@ class ParcoursType extends AbstractType
                                     'application/x-pdf',
 
                                 ],
-                                // 'mimeTypeMessage' =>'merci de télécharger un document PDF',
+                                //  'mimeTypeMessage' =>'merci de télécharger un document PDF',
                                 ])
                             ]
             ])

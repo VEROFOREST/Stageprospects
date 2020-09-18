@@ -5,6 +5,9 @@ namespace App\Entity;
 use App\Repository\ParcoursRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
+
+
 /**
  * @ORM\Entity(repositoryClass=ParcoursRepository::class)
  */
@@ -54,7 +57,6 @@ class Parcours
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-   
      */
     private $cv;
 

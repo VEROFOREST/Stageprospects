@@ -7,6 +7,7 @@ h1 {
 	z-index: 2;
 	padding: 0.5em 1em;
     color:white;
+	text-align: center;
 }
 
 @keyframes hide {
