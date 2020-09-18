@@ -1,6 +1,58 @@
 body{
-    background-color:#EDEDFA;
+    background-color:#E1E9ED;
 }
-h1{
-    text-align: center;
+
+h1 {
+	position: relative;
+	z-index: 2;
+	padding: 0.5em 1em;
+    color:white;
+}
+
+@keyframes hide {
+	from {
+		width: 100%;
+	}
+	to {
+		width: 0;
+	}
+}
+
+@keyframes show {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+h1::before, h1::after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	content: '';
+}
+
+h1::before {
+	background: #1098ad;
+	z-index: -1;
+	width: 0;
+}
+
+h1::after {
+	background: #262f38;
+	width: 100%;
+}
+
+h1.show::before {
+	animation: show 3s .3s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+h1.show::after {
+	animation: hide 1.7s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}
+h3{
+    color: #1098ad;
 }

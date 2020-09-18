@@ -8,8 +8,10 @@ use App\Entity\Structure;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ParcoursType extends AbstractType
 {
@@ -29,13 +31,28 @@ class ParcoursType extends AbstractType
                 ],
                 ])
             ->add('remarque')
-            ->add('cv',ChoiceType::class, [
-                'choices'  => [
+            // ->add('cv',ChoiceType::class, [
+            //     'choices'  => [
                  
-                'Oui' => true,
-                'Non' => false,
-                ],
-                ])
+            //     'Oui' => true,
+            //     'Non' => false,
+            //     ],
+            //     ])
+            ->add('cv',FileType::class, [
+            'label'  => 'Cv (fichier PDF)',
+            'mapped' => false,
+            'required'=>false,
+            'constraints'=>[
+                            new File([
+                                'mimeTypes' => [
+                                    'application/pdf',
+                                    'application/x-pdf',
+
+                                ],
+                                // 'mimeTypeMessage' =>'merci de télécharger un document PDF',
+                                ])
+                            ]
+            ])
             ->add('nomReferent')
             ->add('mailReferent')
             ->add('structure',EntityType::class, array(
