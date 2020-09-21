@@ -24,10 +24,10 @@ class PreInscription
     private $prospect;
 
     /**
-     * @ORM\OneToOne(targetEntity=Parcours::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=ChargeDe::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $parcours;
+    private $chargeDe;
 
     /**
      * @ORM\ManyToOne(targetEntity=CategFormation::class)
@@ -36,16 +36,15 @@ class PreInscription
     private $categFormation;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ChargeDe::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $chargeDe;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Financement::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $financement;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -64,14 +63,14 @@ class PreInscription
         return $this;
     }
 
-    public function getParcours(): ?Parcours
+    public function getChargeDe(): ?ChargeDe
     {
-        return $this->parcours;
+        return $this->chargeDe;
     }
 
-    public function setParcours(Parcours $parcours): self
+    public function setChargeDe(?ChargeDe $chargeDe): self
     {
-        $this->parcours = $parcours;
+        $this->chargeDe = $chargeDe;
 
         return $this;
     }
@@ -88,18 +87,6 @@ class PreInscription
         return $this;
     }
 
-    public function getChargeDe(): ?ChargeDe
-    {
-        return $this->chargeDe;
-    }
-
-    public function setChargeDe(?ChargeDe $chargeDe): self
-    {
-        $this->chargeDe = $chargeDe;
-
-        return $this;
-    }
-
     public function getFinancement(): ?Financement
     {
         return $this->financement;
@@ -108,6 +95,18 @@ class PreInscription
     public function setFinancement(?Financement $financement): self
     {
         $this->financement = $financement;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
