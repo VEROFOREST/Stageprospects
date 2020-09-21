@@ -23,14 +23,39 @@ class Formation
     private $type;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $dateSession1;
+    private $duree;
+
+   
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $dateSession2;
+    private $contenu_Formation;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lieuFormation;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $coutFormation;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $matSupp;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=SessionFormation::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $sessionFormation;
+
+    
 
     public function getId(): ?int
     {
@@ -49,27 +74,79 @@ class Formation
         return $this;
     }
 
-    public function getDateSession1(): ?\DateTimeInterface
+    public function getDuree(): ?string
     {
-        return $this->dateSession1;
+        return $this->duree;
     }
 
-    public function setDateSession1(?\DateTimeInterface $dateSession1): self
+    public function setDuree(?string $duree): self
     {
-        $this->dateSession1 = $dateSession1;
+        $this->duree = $duree;
 
         return $this;
     }
 
-    public function getDateSession2(): ?\DateTimeInterface
+   
+
+    public function getContenuFormation(): ?string
     {
-        return $this->dateSession2;
+        return $this->contenu_Formation;
     }
 
-    public function setDateSession2(?\DateTimeInterface $dateSession2): self
+    public function setContenuFormation(?string $contenu_Formation): self
     {
-        $this->dateSession2 = $dateSession2;
+        $this->contenu_Formation = $contenu_Formation;
 
         return $this;
     }
+
+    public function getLieuFormation(): ?string
+    {
+        return $this->lieuFormation;
+    }
+
+    public function setLieuFormation(?string $lieuFormation): self
+    {
+        $this->lieuFormation = $lieuFormation;
+
+        return $this;
+    }
+
+    public function getCoutFormation(): ?string
+    {
+        return $this->coutFormation;
+    }
+
+    public function setCoutFormation(?string $coutFormation): self
+    {
+        $this->coutFormation = $coutFormation;
+
+        return $this;
+    }
+
+    public function getMatSupp(): ?bool
+    {
+        return $this->matSupp;
+    }
+
+    public function setMatSupp(?bool $matSupp): self
+    {
+        $this->matSupp = $matSupp;
+
+        return $this;
+    }
+
+    public function getSessionFormation(): ?SessionFormation
+    {
+        return $this->sessionFormation;
+    }
+
+    public function setSessionFormation(?SessionFormation $sessionFormation): self
+    {
+        $this->sessionFormation = $sessionFormation;
+
+        return $this;
+    }
+
+    
 }

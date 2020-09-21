@@ -3,7 +3,8 @@
 {% block title %}Prospect{% endblock %}
 
 {% block body %}
-    <h1>Prospect</h1>
+<div class="container">
+    <h1 class="show">Prospect</h1>
 
     <table class="table">
         <tbody>
@@ -59,4 +60,5 @@
     <a href="{{ path('prospect_edit', {'id': prospect.id}) }}">edit</a>
 
     {{ include('prospect/_delete_form.html.twig') }}
+</div>
 {% endblock %}
