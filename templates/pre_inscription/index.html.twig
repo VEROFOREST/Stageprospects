@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PreInscription index{% endblock %}
+
+{% block body %}
+    <h1>PreInscription index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pre_inscription in pre_inscriptions %}
+            <tr>
+                <td>{{ pre_inscription.id }}</td>
+                <td>{{ pre_inscription.createdAt ? pre_inscription.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('pre_inscription_show', {'id': pre_inscription.id}) }}">show</a>
+                    <a href="{{ path('pre_inscription_edit', {'id': pre_inscription.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('pre_inscription_new') }}">Create new</a>
+{% endblock %}

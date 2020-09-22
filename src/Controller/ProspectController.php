@@ -59,7 +59,7 @@ class ProspectController extends AbstractController
             $entityManager->persist($prospect);
             $entityManager->flush();
 
-            return $this->redirectToRoute('prospect_index');
+            return $this->redirectToRoute('pre_inscription_new',['id'=> $prospect->getId()]);
         }
 
         return $this->render('prospect/new.html.twig', [

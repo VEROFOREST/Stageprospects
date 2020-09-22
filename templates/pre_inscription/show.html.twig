@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PreInscription{% endblock %}
+
+{% block body %}
+    <h1>PreInscription</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pre_inscription.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ pre_inscription.createdAt ? pre_inscription.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pre_inscription_index') }}">back to list</a>
+
+    <a href="{{ path('pre_inscription_edit', {'id': pre_inscription.id}) }}">edit</a>
+
+    {{ include('pre_inscription/_delete_form.html.twig') }}
+{% endblock %}

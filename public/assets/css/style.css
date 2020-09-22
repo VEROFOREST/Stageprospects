@@ -1,5 +1,5 @@
 body{
-    background-color:#E1E9ED;
+    background-color:#fff;
 }
 
 h1 {
@@ -37,7 +37,7 @@ h1::before, h1::after {
 }
 
 h1::before {
-	background: #1098ad;
+	background: #30498D;
 	z-index: -1;
 	width: 0;
 }
@@ -55,5 +55,8 @@ h1.show::after {
 	animation: hide 1.7s forwards cubic-bezier(0.23, 1, 0.32, 1);
 }
 h3{
-    color: #1098ad;
+    color:#30498D;
+}
+button#preinscription {
+	background-color: #30498D!important;
 }

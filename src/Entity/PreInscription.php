@@ -31,13 +31,13 @@ class PreInscription
 
     /**
      * @ORM\ManyToOne(targetEntity=CategFormation::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $categFormation;
 
     /**
      * @ORM\ManyToOne(targetEntity=Financement::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $financement;
 
