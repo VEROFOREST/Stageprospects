@@ -57,6 +57,12 @@ h1.show::after {
 h3{
     color:#30498D;
 }
-button#preinscription {
+button{
 	background-color: #30498D!important;
+	border-color:  #30498D!important;
+}
+.btn-info{
+	background-color: #30498D!important;
+	border-color:  #30498D!important;
+
 }

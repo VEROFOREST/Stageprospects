@@ -13,8 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 
 
 /**
@@ -93,11 +91,23 @@ class PreInscriptionController extends AbstractController
      */
     public function loadPDF(PreInscription $preInscription): Response
    { 
+       $html = $this->renderView('pre_inscription/new.html.twig');
+
+        $filename = sprintf('test-%s.pdf', date('Y-m-d'));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]
+        );
    }
     /**
      * @Route("/{id}", name="pre_inscription_confirmation", methods={"GET"})
      */
-    public function show(PreInscription $preInscription): Response
+    public function confirmation(PreInscription $preInscription): Response
     {
         
         return $this->render('pre_inscription/confirmation.html.twig', [

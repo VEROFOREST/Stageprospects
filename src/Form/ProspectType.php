@@ -8,10 +8,12 @@ use App\Entity\Membre;
 use App\Entity\Parcours;
 use App\Entity\Profil;
 use App\Entity\Prospect;
+
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -22,7 +24,7 @@ class ProspectType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('pwd')
+            ->add('pwd', PasswordType::class)
             ->add('login')
             ->add('nom')
             ->add('prenom')
