@@ -45,6 +45,27 @@ class ProspectController extends AbstractController
         $etapes = $etapeRepository->findBy(['id'=>1]);
         
         //  dd($membres[0]);
+        if($form->get('save_and_add')->isClicked() && $form->isSubmitted() && $form->isValid()){
+             $entityManager = $this->getDoctrine()->getManager();
+            $prospect->setParcours($parcour);
+            $prospect->setCreatedAt($date);
+            $prospect->setMembre($membres[0]);
+            $prospect->setEtape($etapes[0]);
+            $prospect->setRole(2);
+            $prospect->setActif(-2);
+            $entityManager->persist($prospect);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('prospect_confirmation',['id'=> $prospect->getId()]);
+
+
+
+
+        }
+
+
+
+
         
        
         if ($form->isSubmitted() && $form->isValid()) {
@@ -70,11 +91,11 @@ class ProspectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="prospect_show", methods={"GET"})
+     * @Route("/{id}", name="prospect_confirmation", methods={"GET"})
      */
     public function show(Prospect $prospect): Response
     {
-        return $this->render('prospect/show.html.twig', [
+        return $this->render('prospect/confirmation.html.twig', [
             'prospect' => $prospect,
         ]);
     }

@@ -14,6 +14,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -74,6 +75,8 @@ class ProspectType extends AbstractType
                     'choice_label' => 'id',
                     'multiple'  => false,
             ))
+            ->add('save_and_add', SubmitType::class, array('label' => 'Me recontacter',
+                                                           'attr' => array('class' => 'btn btn-info  btn-lg ')));
         ;
     }
 
