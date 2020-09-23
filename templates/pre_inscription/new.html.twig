@@ -10,19 +10,21 @@
       <input type="hidden" name="prospect_id" value="{{ prospect.id }}" >
        {# <input type="hidden" name="prospect_date" value="{{ prospect.id }}" > #}
      
-      <div class="form-check">
+      <div class="form-check-inline">
       
+        
+        <input class="form-check-input" name="CategFormation" type="radio" value="1" id="exampleRadios1" checked>
         <label class="form-check-label"  for="exampleRadios1" value="1">
         Contrat de formation (formation initiale)
         </label>
-        <input class="form-check-input-left" name="CategFormation" type="radio" value="1" id="exampleRadios1" checked>
       </div>
-      <div class="form-check">
+      <div class="form-check-inline">
         
-        <label class="form-check-label" for="exampleRadios2">
+       
+        <input class="form-check-input" name="CategFormation" type="radio" value="2" id="exampleRadios2" >
+         <label class="form-check-label" for="exampleRadios2">
           Convention de formation (formation en alternance)
         </label>
-        <input class="form-check-input-left" name="CategFormation" type="radio" value="2" id="exampleRadios2" >
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -115,24 +117,24 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="inputDiplomeCours">Diplôme en cours</label>
-          <input type="text" class="form-control" id="inputDiplomeCours" value="{{prospect.deptNaissance}}">
+          <input type="text" class="form-control" id="inputDiplomeCours" value="" placeholder="à compléter">
         </div>
         <div class="form-group col-md-4">
           <label for="inputDiplomeObtenu">Diplôme obtenu :</label>
-          <input id="inputDiplomeObtenu" class="form-control"value="{{prospect.nationalite}}">
+          <input id="inputDiplomeObtenu" class="form-control"value="{{prospect.parcours.dernierDiplome}}">
             
         </div>
         <div class="form-group col-md-4">
           <label for="inputHandicap">Handicap :</label>
-          <input id="inputHandicap" class="form-control"value="{{prospect.nationalite}}">
+          <input id="inputHandicap" class="form-control"value="{{prospect.parcours.handicap}}">
             
         </div>
         
       </div>
     
       <div class="form-group col-md-4">
-        <label for="inputDiplomeCout">Coût de la formation</label>
-        <input type="text" class="form-control" id="inputDiplomeCout"  value="{{prospect.parcours.formation.coutFormation}}">
+        <label for="inputCoutFormation">Coût de la formation</label>
+        <input type="text" class="form-control" id="inputCoutFormation"  value="{{prospect.parcours.formation.coutFormation}}">
       
       <div class="form-check">
  
@@ -147,69 +149,102 @@
       <div class="form-row">
         <div class="form-group col-md-12">
         <label  for="ChargeDe">
-          A la charge de : 
+          <h6>A la charge de : </h6>
           </label>
         </div>
         
       </div>
       <div class="form-row">
-        <div class="form-check">
-          <label class="form-check-label" for="exampleRadios3">
+         <div class="form-group col-md-12">
+        <div class="form-check-inline">
+          
+          <input class="form-check-input" name="ChargeDe" type="radio" checked="checked" value="1" id="exampleRadios3">
+          <label class="form-check-label" for="exampleRadios3" >
             Intégralement du candidat
           </label>
-          <input class="form-check-input-left" name="ChargeDe" type="radio" value="1" id="exampleRadios3">
+        </div>
+        <div class="form-check-inline">
           
-        </div>
-        <div class="form-check">
+          <input class="form-check-input" name="ChargeDe" type="radio" value="2" id="exampleRadios4" checked="checked" onclick="txtInput()">
           <label class="form-check-label" for="exampleRadios4">
-            Partiellement du candidat
+            Partiellement du candidat, 
+          
           </label>
-          <input class="form-check-input-left" name="ChargeDe" type="radio" value="2" id="exampleRadios4" >
+          <div class="form-group col-md-12">
+          {# {% if (pre_inscription.chargeDe.id as "(2)") %} #}
+          <div id='montantpartiel'>  
+         <label for="inputmontantpartiel">Montant :</label>
+          <input type="text" class="form-control" id="inputmontantpartiel" name="montantCandidat" value="">
+          {# {% endif %} #}
+          </div>
         </div>
-        <div class="form-check">
-          <label class="form-check-label" for="exampleRadios5">
-          Structure externe, nom : {{prospect.parcours.structure.nom}}
+
+        </div>
+        <div class="form-check-inline">
+          
+          <input class="form-check-input" name="ChargeDe" type="radio" value="3" id="exampleRadios5tri" checked="checked" onclick="txtstructure();">
+          <label class="form-check-label" for="exampleRadios5tri">
+          Structure externe : 
           </label>
-          <input class="form-check-input-left" name="ChargeDe" type="radio" value="3" id="exampleRadios5" >
+          <div id="nomstructure">
+            <div class="form-group col-md-12 ">
+                <label for="nomstructure">Nom :</label>
+                <input type="text" class="form-control" name="nomStructure" id="nomstructurefinan"  value="">
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label" for="exampleRadios5bis">
+                Paiement validé par la structure
+                </label>
+                <input class="form-check-input-left" name="validePaiement" type="radio" value="true" id="exampleRadios5bis" >
+            </div>
+          </div>
+         
+        
+        </div>
         </div>
         
           <label  for="Financement">
-            Mode de paiement de la formation : 
+           <h6> Mode de paiement de la formation : </h6>
             </label>
         
       </div>
       <div class="form-row">
         <div class="form-group col-md-12">
           <div class="form-check">
+            
+            <input class="form-check-input" name="financement"  type="radio" value="1" id="exampleRadios6" checked="checked">
             <label class="form-check-label " for="exampleRadios6">
               Alternance (Alpha PRIMO)
             </label>
-            <input class="form-check-input-left" name="financement"  type="radio" value="1" id="exampleRadios6">
           
           </div>
           <div class="form-check">
+            
+            <input class="form-check-input" name="financement" type="radio" value="2" id="exampleRadios7" >
             <label class="form-check-label" for="exampleRadios7">
               CPF (Alpha PRIMO)
             </label>
-            <input class="form-check-input-left" name="financement" type="radio" value="2" id="exampleRadios7" >
           </div>
           <div class="form-check">
+            
+            <input class="form-check-input"name="financement"  type="radio" value="3" id="exampleRadios8" >
             <label class="form-check-label" for="exampleRadios8">
             Continue (Alpha PRIMO)
             </label>
-            <input class="form-check-input-left"name="financement"  type="radio" value="3" id="exampleRadios8" >
           </div>
           <div class="form-check">
+            
+            <input class="form-check-input" name="financement"  type="radio" value="4" id="exampleRadios9" >
             <label class="form-check-label" for="exampleRadios9">
             Formation initiale Conduisant à un diplôme d'état (GROUPE ARES MATHZAP FORMATION)
             </label>
-            <input class="form-check-input-left" name="financement"  type="radio" value="4" id="exampleRadios9" >
           </div>
           <div class="form-check">
+            
+            <input class="form-check-input"name="financement" type="radio" value="5" id="exampleRadios10" >
             <label class="form-check-label" for="exampleRadios10">
             Formation privée (GROUPE ARES MATHZAP FORMATION)
             </label>
-            <input class="form-check-input-left"name="financement" type="radio" value="5" id="exampleRadios10" >
           </div>
         </div>
       </div>
@@ -223,6 +258,7 @@
       
 
   </form>
+  
 
     {# <a href="{{ path('pre_inscription_index') }}">back to list</a> #}
 </div>

@@ -58,10 +58,23 @@ class PreInscriptionController extends AbstractController
             // recup de "charge de "
             $idChargeDe = $request->get ('ChargeDe');
             $ChargesDe = $ChargeDeRepository->findBy(['id'=>$idChargeDe]);
+            // si partiellement candidat
+            $montant =$request->get ('montantCandidat');
+            // si structure
+            $nomStructure = $request->get ('nomStructure');
+            // dd($nomStructure);
+            // si paiement validé
+            $validPaiement = $request ->get ('validePaiement');
+                if($validPaiement){
+                $validPaiement = true;
+                }else{
+                $validPaiement = false;
+                }
+            
             // recup de la categ de formation (i ou a)
             $idCategFormation = $request->get ('CategFormation');
             $CategFormations =$categFormationRepository->findBy (['id'=>$idCategFormation]);
-            dump($CategFormations[0]);
+            // dump($CategFormations[0]);
             //  recup du mode de paiement
             $idFinancement =$request->get ('financement');
             $financements =$financementRepository->findBy (['id'=>$idFinancement]);
@@ -71,6 +84,12 @@ class PreInscriptionController extends AbstractController
             // set des colonnes de la table préinscription
             $preInscription->setCreatedAt($date);
             $preInscription->setProspect($prospect);
+            $preInscription->setCandidatMontantPartiel($montant);
+            $preInscription->setNomStructureFinancement($nomStructure);
+            $preInscription->setIsStructureFinancementValide($validPaiement);
+            
+            
+            
             $preInscription->setCategFormation($CategFormations[0]);
             $preInscription->setChargeDe($ChargesDe[0]);
             $preInscription->setFinancement($financements[0]);

@@ -46,6 +46,21 @@ class PreInscription
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $candidatMontantPartiel;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $nomStructureFinancement;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isStructureFinancementValide;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +122,42 @@ class PreInscription
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCandidatMontantPartiel(): ?string
+    {
+        return $this->candidatMontantPartiel;
+    }
+
+    public function setCandidatMontantPartiel(?string $candidatMontantPartiel): self
+    {
+        $this->candidatMontantPartiel = $candidatMontantPartiel;
+
+        return $this;
+    }
+
+    public function getNomStructureFinancement(): ?string
+    {
+        return $this->nomStructureFinancement;
+    }
+
+    public function setNomStructureFinancement(?string $nomStructureFinancement): self
+    {
+        $this->nomStructureFinancement = $nomStructureFinancement;
+
+        return $this;
+    }
+
+    public function getIsStructureFinancementValide(): ?bool
+    {
+        return $this->isStructureFinancementValide;
+    }
+
+    public function setIsStructureFinancementValide(?bool $isStructureFinancementValide): self
+    {
+        $this->isStructureFinancementValide = $isStructureFinancementValide;
 
         return $this;
     }
