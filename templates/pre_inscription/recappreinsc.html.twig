@@ -1,18 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}PreInscription{% endblock %}
-        {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            
-            <!-- Renders a link tag (if your module requires any CSS)
-                 <link rel="stylesheet" href="/build/app.css"> -->
-        {% endblock %}
         
          
 {% block body %}   
     <body>
         <div class="container">
-  <h1 >Formulaire de pré-inscription {{ 'now'|date('Y-m-d') }}</h1>
+  <h2 id="pdf" >Formulaire de pré-inscription {{ 'now'|date('Y-m-d') }}</h2>
 
   <form id="preinscription-form" method="post" action="{{path("pre_inscription_store",{'id':preinscription.prospect.id})}}">
       {# <input type="hidden" name="prospect_id" value="{{ prospect.id }}" > #}
@@ -270,5 +264,5 @@
 
     {# <a href="{{ path('pre_inscription_index') }}">back to list</a> #}
 </div>
-
+ 
 {% endblock %}

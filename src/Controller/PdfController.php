@@ -40,7 +40,7 @@ class PdfController extends AbstractController
         $html = $this->renderView('pre_inscription/recappreinsc.html.twig', array(
             'preinscription'  => $preInscription
         ));
-        // dd($html); 
+        // dd($knpsnappy); 
         return new PdfResponse(
             
            $knpsnappy->getOutputFromHtml($html),

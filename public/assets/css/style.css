@@ -72,3 +72,7 @@ button{
 #nomstructure{
 	display: none;
 }
+#pdf{
+	background-color: #30498D !important;
+	color: #fff !important;
+}
