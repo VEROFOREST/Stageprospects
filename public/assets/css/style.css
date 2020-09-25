@@ -72,7 +72,23 @@ button{
 #nomstructure{
 	display: none;
 }
+/* css pdf */
+
 #pdf{
 	background-color: #30498D !important;
 	color: #fff !important;
+	text-align: center;
+}
+#categFormation{
+	font-weight: bolder;
+	font-size: 1.5em;
+	text-align: center;
+}
+th{
+	width: 15em;
+}
+td{
+	font-size: 1.2em;
+	font-style: italic;
+	color: #30498D ;
 }

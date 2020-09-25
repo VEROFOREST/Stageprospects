@@ -1,144 +1,156 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}PreInscription{% endblock %}
-        
-         
-{% block body %}   
+
+ 
+{% block body %}
+
     <body>
         <div class="container">
   <h2 id="pdf" >Formulaire de pré-inscription {{ 'now'|date('Y-m-d') }}</h2>
 
   <form id="preinscription-form" method="post" action="{{path("pre_inscription_store",{'id':preinscription.prospect.id})}}">
-      {# <input type="hidden" name="prospect_id" value="{{ prospect.id }}" > #}
-       {# <input type="hidden" name="prospect_date" value="{{ prospect.id }}" > #}
      
-      <div class="form-check-inline">
-      
-        
-        <input class="form-check-input" name="CategFormation" type="radio" value="1" id="exampleRadios1" checked>
-        <label class="form-check-label"  for="exampleRadios1" value="1">
-        Contrat de formation (formation initiale)
-        </label>
-      </div>
-      <div class="form-check-inline">
+      <div id="categFormation">
+     
+        {# <input class="form-check-input" name="CategFormation" type="radio" value="1" id="exampleRadios1" checked> #}
+        <p>{{preinscription.categFormation.nom}}</p>
         
        
-        <input class="form-check-input" name="CategFormation" type="radio" value="2" id="exampleRadios2" >
-         <label class="form-check-label" for="exampleRadios2">
-          Convention de formation (formation en alternance)
-        </label>
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputFormation">Nom de la formation</label>
-          <input type="text" class="form-control" id="inputFormation" value="{{preinscription.prospect.parcours.formation.type}}">
-        </div>
+      <table class="table table-bordered">
+      <tbody>
       
-     
-        <div class="form-group col-md-6">
-          <label for="inputDuree">Durée de la formation</label>
-          <input type="text" class="form-control" id="inputDuree" value="{{preinscription.prospect.parcours.formation.duree}}">
-        </div>
-      </div>
+        <tr>
+          <th scope="row">Nom de la formation</th>
+          <td>{{preinscription.prospect.parcours.formation.type}}</td>
+          <th scope="row">Durée de la formation</th>
+          <td>{{preinscription.prospect.parcours.formation.duree}}</td>
+        </tr>
+      </tbody>
+     </table>
+     <table class="table table-bordered">
+      <tbody>
       
-     
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputSession">Session</label>
-          <input type="text" class="form-control" id="inputSession" value="{{preinscription.prospect.parcours.formation.sessionFormation.nom}}" >
-        </div>
-      
-      
-        <div class="form-group col-md-6">
-          
-           <label for="inputLieu">Lieu de la formation </label>
-          <input type="text" class="form-control" id="inputLieu" value="{{preinscription.prospect.parcours.formation.lieuFormation}}">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <label for="inputContenu">Contenu de la formation : </label>
-          <input type="textarea" class="form-control" id="inputContenu" value="{{preinscription.prospect.parcours.formation.contenuFormation}}" >       
-        </div>
-      </div>
+            <tr>
+          <th scope="row">Session</th>
+          <td class="text-center">{{preinscription.prospect.parcours.formation.sessionFormation.nom}}</td>
+        </tr>
+      </tbody>
+     </table>
 
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputNom">NOM :</label>
-          <input type="text" class="form-control" id="inputNom"value="{{preinscription.prospect.nom}}">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputPrenom">PRENOM :</label>
-          <input type="text" class="form-control" id="inputPrenom" value="{{preinscription.prospect.prenom}}">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="inputAddress">Adresse :</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"value="{{preinscription.prospect.adresse}}">
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">Ville :</label>
-          <input type="text" class="form-control" id="inputCity" value="{{preinscription.prospect.ville}}">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputState">CP :</label>
-          <input id="inputState" class="form-control"value="{{preinscription.prospect.cp}}">
-        </div>
-      </div>
-     <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputTel">Tel :</label>
-          <input type="text" class="form-control" id="inputTel" value="{{preinscription.prospect.tel}}">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputMail">Mail :</label>
-          <input id="inputMail" class="form-control"value="{{preinscription.prospect.email}}">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputDateNaissance">Né(e) le :</label>
-          <input type="text" class="form-control" id="inputDateNaissance" value="{{preinscription.prospect.lieuNaissance}}">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputLieuNaissance">à :</label>
-          <input id="inputLieuNaissance" class="form-control"value="{{preinscription.prospect.lieuNaissance}}">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">Dépt naissance</label>
-          <input type="text" class="form-control" id="inputCity" value="{{preinscription.prospect.deptNaissance}}">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="inputState">Nationalité :</label>
-          <input id="inputState" class="form-control"value="{{preinscription.prospect.nationalite}}">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="inputDiplomeCours">Diplôme en cours</label>
-          <input type="text" class="form-control" id="inputDiplomeCours" value="" placeholder="à compléter">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputDiplomeObtenu">Diplôme obtenu :</label>
-          <input id="inputDiplomeObtenu" class="form-control"value="{{preinscription.prospect.parcours.dernierDiplome}}">
-            
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputHandicap">Handicap :</label>
-          <input id="inputHandicap" class="form-control"value="{{preinscription.prospect.parcours.handicap}}">
-            
-        </div>
-        
-      </div>
-    
-      <div class="form-group col-md-4">
-        <label for="inputCoutFormation">Coût de la formation</label>
-        <input type="text" class="form-control" id="inputCoutFormation"  value="{{preinscription.prospect.parcours.formation.coutFormation}}">
+     <table class="table table-bordered">
+      <tbody>
       
-      <div class="form-check">
+          <tr>
+          <th scope="row">Lieu de la formation</th>
+          <td class="text-center">{{preinscription.prospect.parcours.formation.lieuFormation}}</td>
+        </tr>
+
+      </tbody>
+     </table>
+     <table class="table table-bordered">
+      <tbody>
+      
+          <tr>
+          <th scope="row">Contenu de la formation</th>
+          <td class="text-center">{{preinscription.prospect.parcours.formation.contenuFormation}}</td>
+        </tr>
+
+      </tbody>
+     </table>
+         <table class="table table-bordered">
+      <tbody>
+      
+        <tr>
+          <th scope="row">NOM</th>
+          <td>{{preinscription.prospect.nom}}</td>
+          <th scope="row">PRENOM</th>
+          <td>{{preinscription.prospect.prenom}}</td>
+        </tr>
+      </tbody>
+     </table>
+      <table class="table table-bordered">
+        <tbody>
+        
+            <tr>
+            <th scope="row">Adresse</th>
+            <td class="text-center">{{preinscription.prospect.adresse}}</td>
+          </tr>
+
+        </tbody>
+     </table>
+      <table class="table table-bordered">
+        <tbody>
+        
+          <tr>
+            <th scope="row">CP</th>
+            <td>{{preinscription.prospect.cp}}</td>
+            <th scope="row">Ville</th>
+            <td>{{preinscription.prospect.ville}}</td>
+          </tr>
+        </tbody>
+     </table>
+     <table class="table table-bordered">
+        <tbody>
+        
+          <tr>
+            <th scope="row">Tel</th>
+            <td>{{preinscription.prospect.tel}}</td>
+            <th scope="row">Mail</th>
+            <td>{{preinscription.prospect.email}}</td>
+          </tr>
+        </tbody>
+     </table>
+   
+     <table class="table table-bordered">
+        <tbody>
+        
+          <tr>
+            <th scope="row">Né(e) le</th>
+            <td>{{preinscription.prospect.lieuNaissance}}</td>
+            <th scope="row">à</th>
+            <td>{{preinscription.prospect.lieuNaissance}}</td>
+          </tr>
+        </tbody>
+     </table>
+    <table class="table table-bordered">
+        <tbody>
+        
+          <tr>
+            <th scope="row">Dépt naissance</th>
+            <td>{{preinscription.prospect.deptNaissance}}</td>
+            <th scope="row">Nationalité </th>
+            <td>{{preinscription.prospect.nationalite}}</td>
+          </tr>
+        </tbody>
+     </table>
+    <table class="table table-bordered">
+      <tbody>
+      
+        <tr>
+          <th scope="row">Diplôme en cours</th>
+          <td>      </td>
+          <th scope="row">Diplôme obtenu </th>
+          <td>{{preinscription.prospect.parcours.dernierDiplome}}</td>
+          <th scope="row">Handicap</th>
+          <td class="text-center">{{preinscription.prospect.parcours.handicap}}</td>
+        </tr>
+
+      </tbody>
+     </table>
+      <table class="table table-bordered">
+      <tbody>
+      
+          <tr>
+          <th scope="row">Coût de la formation</th>
+          <td class="text-center">{{preinscription.prospect.parcours.formation.coutFormation}}</td>
+          
+        </tr>
+ 
+      </tbody>
+     </table>
+            <div class="form-check">
  
        
         {% if (preinscription.prospect.parcours.formation.matSupp) %}
@@ -147,119 +159,60 @@
                
         {% endif %}    
       </div>
-      
-      <div class="form-row">
-        <div class="form-group col-md-12">
-        <label  for="ChargeDe">
-          <h6>A la charge de : </h6>
-          </label>
-        </div>
-        
-      </div>
-      <div class="form-row">
-         <div class="form-group col-md-12">
-        <div class="form-check-inline">
-          
-          <input class="form-check-input" name="ChargeDe" type="radio" checked="checked" value="1" id="exampleRadios3">
-          <label class="form-check-label" for="exampleRadios3" >
-            {{preinscription.chargeDe.libelle}}
-          </label>
-        </div>
-        <div class="form-check-inline">
-          
-          <input class="form-check-input" name="ChargeDe" type="radio" value="2" id="exampleRadios4" checked="checked" onclick="txtInput()">
-          <label class="form-check-label" for="exampleRadios4">
-            Partiellement du candidat, 
-          
-          </label>
-          <div class="form-group col-md-12">
-          {# {% if (pre_inscription.chargeDe.id as "(2)") %} #}
-          <div id='montantpartiel'>  
-         <label for="inputmontantpartiel">Montant :</label>
-          <input type="text" class="form-control" id="inputmontantpartiel" name="montantCandidat" value="">
-          {# {% endif %} #}
-          </div>
-        </div>
-
-        </div>
-        <div class="form-check-inline">
-          
-          <input class="form-check-input" name="ChargeDe" type="radio" value="3" id="exampleRadios5tri" checked="checked" onclick="txtstructure();">
-          <label class="form-check-label" for="exampleRadios5tri">
-          Structure externe : 
-          </label>
-          <div id="nomstructure">
-            <div class="form-group col-md-12 ">
-                <label for="nomstructure">Nom :</label>
-                <input type="text" class="form-control" name="nomStructure" id="nomstructurefinan"  value="">
-            </div>
-            <div class="form-check-inline">
-              <label class="form-check-label" for="exampleRadios5bis">
-                Paiement validé par la structure
-                </label>
-                <input class="form-check-input-left" name="validePaiement" type="radio" value="true" id="exampleRadios5bis" >
-            </div>
-          </div>
-         
-        
-        </div>
-        </div>
-        
-          <label  for="Financement">
-           <h6> Mode de paiement de la formation : </h6>
-            </label>
-        
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-12">
-          <div class="form-check">
-            
-            <input class="form-check-input" name="financement"  type="radio" value="1" id="exampleRadios6" checked="checked">
-            <label class="form-check-label " for="exampleRadios6">
-              Alternance (Alpha PRIMO)
-            </label>
-          
-          </div>
-          <div class="form-check">
-            
-            <input class="form-check-input" name="financement" type="radio" value="2" id="exampleRadios7" >
-            <label class="form-check-label" for="exampleRadios7">
-              {{preinscription.financement.nom}}
-            </label>
-          </div>
-          <div class="form-check">
-            
-            <input class="form-check-input"name="financement"  type="radio" value="3" id="exampleRadios8" >
-            <label class="form-check-label" for="exampleRadios8">
-            Continue (Alpha PRIMO)
-            </label>
-          </div>
-          <div class="form-check">
-            
-            <input class="form-check-input" name="financement"  type="radio" value="4" id="exampleRadios9" >
-            <label class="form-check-label" for="exampleRadios9">
-            Formation initiale Conduisant à un diplôme d'état (GROUPE ARES MATHZAP FORMATION)
-            </label>
-          </div>
-          <div class="form-check">
-            
-            <input class="form-check-input"name="financement" type="radio" value="5" id="exampleRadios10" >
-            <label class="form-check-label" for="exampleRadios10">
-            Formation privée (GROUPE ARES MATHZAP FORMATION)
-            </label>
-          </div>
-        </div>
-      </div>
+       
     
-  
-    <button id="preinscription" type="submit" class="btn btn-primary btn-lg float-right">Envoyer<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-      <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-      </svg>
-    </button>
+      
+      <h6>A la charge de : </h6>
+      
+      
+          <form>
+          <input type="hidden" id="inputid" value="{{preinscription.chargeDe.id}}">
+          </form>
+          {% if preinscription.chargeDe.id  == 2 %}
+            <div>
+            <p> {{preinscription.chargeDe.libelle}}   {{preinscription.candidatMontantPartiel}}</p>
+            
+             </div> 
+                 
+            
+         
+          
+      {% elseif preinscription.chargeDe.id  == 3  %}  
+          <div>
+            <p> {{preinscription.chargeDe.libelle}}  {{preinscription.nomStructureFinancement}}</p>
+            
+            
+            {% if (preinscription.isStructureFinancementValide) %}
+                <div class="form-check-inline">
+                
+                  <label class="form-check-label" for="exampleRadios5bis">
+                    Paiement validé par la structure
+                    </label>
+                    <input class="form-check-input-left" name="validePaiement" type="radio" value="true" id="exampleRadios5bis"  checked>
+                </div>
+            {% endif %}
+          </div> 
+        {% else %}
+          <div>
+            <p> {{preinscription.chargeDe.libelle}}</p>
+          </div>
+    
+        {% endif %}
+        
+      
+         
+       
+      <h6> Mode de paiement de la formation : </h6>
+      <div>
+      <p>  {{preinscription.financement.nom}}</p>
+      </div>    
+        
+     
+          
+            
+        
       
 
-  </form>
   
 
     {# <a href="{{ path('pre_inscription_index') }}">back to list</a> #}

@@ -18,12 +18,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class PdfController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route("/{id}", name="index", methods={"GET"})
      */
-    public function index() 
+    public function index(PreInscription $preInscription) 
     {
-        return $this->render('helloworld.html.twig', [
-            
+        return $this->render('pre_inscription/recappreinsc.html.twig', [
+            'preinscription'  => $preInscription,
         ]);
     }
     
@@ -35,10 +35,10 @@ class PdfController extends AbstractController
     public function getPdf( PreInscription $preInscription, \Knp\Snappy\Pdf $knpsnappy, ContainerInterface $container) 
     {
       
-        
     
         $html = $this->renderView('pre_inscription/recappreinsc.html.twig', array(
-            'preinscription'  => $preInscription
+            'preinscription'  => $preInscription,
+           
         ));
         // dd($knpsnappy); 
         return new PdfResponse(
