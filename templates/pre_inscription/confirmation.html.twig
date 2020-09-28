@@ -10,9 +10,44 @@
             <section class="banner center-align" style="margin: 5rem 0;">
                 <h1 class="show">Merci!<br>Votre Pré-inscription est enregistrée</h1>
                 <div class="text-center">
+                 <form>
+                <input type="hidden" id="inputid" value="{{pre_inscription.chargeDe.id}}">
+                </form>
                     <h5 class="text-center color_brand_primary">Recapitulatif</h5>
                    <p>Pré-inscription à la formation  {{pre_inscription.prospect.parcours.formation.type}}<br>
-                    d'un montant de {{pre_inscription.prospect.parcours.formation.coutFormation}} <br> à la charge de {{pre_inscription.chargeDe.libelle}}{{pre_inscription.candidatMontantPartiel}} €<br>
+                    d'un montant de {{pre_inscription.prospect.parcours.formation.coutFormation}} <br>
+                         {% if pre_inscription.chargeDe.id  == 2 %}
+                            <div>
+                            <p class="conf"> {{pre_inscription.chargeDe.libelle}}   {{pre_inscription.candidatMontantPartiel}}</p>
+                            
+                            </div> 
+                 
+            
+         
+          
+                            {% elseif pre_inscription.chargeDe.id  == 3  %}  
+                                <div>
+                                    <p class="conf"> {{pre_inscription.chargeDe.libelle}}  {{pre_inscription.nomStructureFinancement}}</p>
+            
+            
+                            {% if (pre_inscription.isStructureFinancementValide) %}
+                                <div class="form-check-inline">
+                                
+                                <label class="form-check-label" for="exampleRadios5bis">
+                                    Paiement validé par la structure
+                                    </label>
+                                    <input class="form-check-input-left" name="validePaiement" type="radio" value="true" id="exampleRadios5bis"  checked>
+                                </div>
+                                    {% endif %}
+                                </div> 
+                                {% else %}
+                                <div>
+                                    <p class="conf"> {{pre_inscription.chargeDe.libelle}}</p>
+                                </div>
+            
+                            {% endif %}
+                    
+                     {# à la charge de {{pre_inscription.chargeDe.libelle}}{{pre_inscription.candidatMontantPartiel}} €<br> #}
                     mode de paiement : {{pre_inscription.financement.nom}}</p>
                     <p>Si vous nous n'avez pas reçu cet email vérifiez votre boîte de réception spam ou contactez notre <a href="mailto:contact@aresformation.com">secrétariat Ares Formation</a>.</p>
                 </div>

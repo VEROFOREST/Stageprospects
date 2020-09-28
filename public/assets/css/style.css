@@ -91,4 +91,21 @@ td{
 	font-size: 1.2em;
 	font-style: italic;
 	color: #30498D ;
+	font-weight: bolder;
+}
+.repChoice{
+	font-size: 1.2em;
+	font-style: italic;
+	color: #30498D ;
+	font-weight: bolder;
+}
+h6{
+	font-size: 1rem;
+	font-weight: bolder;
+}
+.validation{
+	font-size: 1rem;
+	font-weight: bolder;
+	
+
 }

@@ -14,15 +14,19 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             {{form_label(form.dernierDiplome, 'votre dernier diplôme obtenu', { 'attr': {'class': 'foo'} }) }}
             {{ form_widget(form.dernierDiplome, {'attr': {'class': "form-control", 'placeholder': "dernier Diplome"}}) }}
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
+            {{form_label(form.encoursDiplome, 'votre diplôme en cours', { 'attr': {'class': 'foo'} }) }}
+            {{ form_widget(form.encoursDiplome, {'attr': {'class': "form-control", 'placeholder': "Diplôme en cours"}}) }}
+        </div>
+        <div class="form-group col-md-3">
             {{form_label(form.dernierEmploi, 'Votre dernierEmploi', { 'attr': {'class': 'foo'} }) }}
             {{ form_widget(form.dernierEmploi, {'attr': {'class': "form-control", 'placeholder': "dernierEmploi"}}) }}
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             {{form_label(form.dernier_contrat, 'Votre votre dernier contrat ', { 'attr': {'class': 'foo'} }) }}
             {{ form_widget(form.dernier_contrat, {'attr': {'class': "form-control", 'placeholder': "votre dernier contrat (CDI, CDD...)"}}) }}
         </div>

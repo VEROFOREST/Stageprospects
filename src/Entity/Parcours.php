@@ -82,6 +82,11 @@ class Parcours
      */
     private $formation;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $encoursDiplome;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -237,5 +242,17 @@ class Parcours
     $this->id = $id;
 
     return $this;
+    }
+
+    public function getEncoursDiplome(): ?string
+    {
+        return $this->encoursDiplome;
+    }
+
+    public function setEncoursDiplome(?string $encoursDiplome): self
+    {
+        $this->encoursDiplome = $encoursDiplome;
+
+        return $this;
     }
 }

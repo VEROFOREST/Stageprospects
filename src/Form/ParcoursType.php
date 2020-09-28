@@ -21,6 +21,7 @@ class ParcoursType extends AbstractType
             ->add('numPoleEmploi')
             ->add('cpf')
             ->add('dernierDiplome')
+            ->add('encoursDiplome')
             ->add('dernierEmploi')
             ->add('dernier_contrat')
             ->add('handicap',ChoiceType::class, [

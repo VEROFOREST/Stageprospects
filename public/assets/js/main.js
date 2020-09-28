@@ -1,6 +1,7 @@
 // animation titre
     document.querySelector('h1').classList.toggle('show');
     setTimeout(() => document.querySelector('h1').classList.toggle('show'), 200);
+
 // animation input montant partiel preinscription
     function txtInput() {
         // Get the checkbox
@@ -36,3 +37,9 @@
         }
     }
 
+
+
+// date picker
+  jQuery(document).ready(function() {
+            $('.js-datepicker').datepicker();
+        });

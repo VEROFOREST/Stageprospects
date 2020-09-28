@@ -7,7 +7,7 @@
 
     <body>
         <div class="container">
-  <h2 id="pdf" >Formulaire de pré-inscription {{ 'now'|date('Y-m-d') }}</h2>
+  <h2 id="pdf" >Formulaire de pré-inscription </h2>
 
   <form id="preinscription-form" method="post" action="{{path("pre_inscription_store",{'id':preinscription.prospect.id})}}">
      
@@ -130,7 +130,7 @@
       
         <tr>
           <th scope="row">Diplôme en cours</th>
-          <td>      </td>
+          <td>{{preinscription.prospect.parcours.encoursDiplome}}      </td>
           <th scope="row">Diplôme obtenu </th>
           <td>{{preinscription.prospect.parcours.dernierDiplome}}</td>
           <th scope="row">Handicap</th>
@@ -170,7 +170,7 @@
           </form>
           {% if preinscription.chargeDe.id  == 2 %}
             <div>
-            <p> {{preinscription.chargeDe.libelle}}   {{preinscription.candidatMontantPartiel}}</p>
+            <p class="repChoice"> {{preinscription.chargeDe.libelle}}   {{preinscription.candidatMontantPartiel}}</p>
             
              </div> 
                  
@@ -179,7 +179,7 @@
           
       {% elseif preinscription.chargeDe.id  == 3  %}  
           <div>
-            <p> {{preinscription.chargeDe.libelle}}  {{preinscription.nomStructureFinancement}}</p>
+            <p class="repChoice"> {{preinscription.chargeDe.libelle}}  {{preinscription.nomStructureFinancement}}</p>
             
             
             {% if (preinscription.isStructureFinancementValide) %}
@@ -194,7 +194,7 @@
           </div> 
         {% else %}
           <div>
-            <p> {{preinscription.chargeDe.libelle}}</p>
+            <p class="repChoice"> {{preinscription.chargeDe.libelle}}</p>
           </div>
     
         {% endif %}
@@ -204,18 +204,22 @@
        
       <h6> Mode de paiement de la formation : </h6>
       <div>
-      <p>  {{preinscription.financement.nom}}</p>
+      <p class="repChoice">  {{preinscription.financement.nom}}</p>
       </div>    
         
      
-          
+        <div class="validation">
+        <p> Fait à : {{preinscription.prospect.ville}}  </p>
+        <p> le : {{ 'now'|date('Y-m-d') }} </p>
+        <p> Signature</p>
+        </div>
             
         
       
 
   
 
-    {# <a href="{{ path('pre_inscription_index') }}">back to list</a> #}
+   
 </div>
  
 {% endblock %}

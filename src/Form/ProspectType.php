@@ -38,7 +38,9 @@ class ProspectType extends AbstractType
                         'year' => 'Année',
                          'month' => 'Mois',
                           'day' => 'Jour',
-                    ]])
+                    ],
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'js-datepicker']])
             ->add('lieuNaissance')
             ->add('deptNaissance')
             ->add('nationalite')
