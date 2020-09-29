@@ -34,7 +34,7 @@ class PdfController extends AbstractController
     
     public function getPdf( PreInscription $preInscription, \Knp\Snappy\Pdf $knpsnappy, ContainerInterface $container) 
     {
-      
+    //   transformer une page twig en pdf en lui faisant passer des variables
     
         $html = $this->renderView('pre_inscription/recappreinsc.html.twig', array(
             'preinscription'  => $preInscription,

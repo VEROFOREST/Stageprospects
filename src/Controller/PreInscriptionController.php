@@ -37,13 +37,11 @@ class PreInscriptionController extends AbstractController
      */
     public function new(Prospect $prospect,Request $request): Response
     {
-        
-        
+        // affiche le template du form 
 
         return $this->render('pre_inscription/new.html.twig', [
             'prospect'=>$prospect,
-            // 'pre_inscription' => $preInscription,
-            // 'form' => $form->createView(),
+            
         ]);
     }
      /**
@@ -52,7 +50,8 @@ class PreInscriptionController extends AbstractController
     public function store(Prospect $prospect,Request $request,
                         ChargeDeRepository $ChargeDeRepository,
                         FinancementRepository $financementRepository,
-                        CategFormationRepository $categFormationRepository,\Swift_Mailer $mailer): Response
+                        CategFormationRepository $categFormationRepository,
+                        \Swift_Mailer $mailer): Response
     {
             $preInscription = new PreInscription();
             // recup de la date
@@ -98,6 +97,7 @@ class PreInscriptionController extends AbstractController
 
             $entityManager->persist($preInscription);
             $entityManager->flush();
+            
             // envoie mail confirmation
             $message = (new \Swift_Message('inscription'))
                 // On attribue l'expéditeur

@@ -43,7 +43,7 @@ class ParcoursController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $parcour->setId();
 
-            // permet de gérer le fichier uploadé pour le cv
+            // upload files (cv)
             $cvFile =$form->get('cv')->getData();
             if ($cvFile) {
                 $originalFilename = pathinfo($cvFile->getClientOriginalName(), PATHINFO_FILENAME);
