@@ -52,7 +52,7 @@ class PreInscriptionController extends AbstractController
     public function store(Prospect $prospect,Request $request,
                         ChargeDeRepository $ChargeDeRepository,
                         FinancementRepository $financementRepository,
-                        CategFormationRepository $categFormationRepository): Response
+                        CategFormationRepository $categFormationRepository,\Swift_Mailer $mailer): Response
     {
             $preInscription = new PreInscription();
             // recup de la date
@@ -98,6 +98,25 @@ class PreInscriptionController extends AbstractController
 
             $entityManager->persist($preInscription);
             $entityManager->flush();
+            // envoie mail confirmation
+            $message = (new \Swift_Message('inscription'))
+                // On attribue l'expéditeur
+                ->setFrom('vxforest@gmail.com')
+
+                // On attribue le destinataire
+                ->setTo($prospect->getEmail())
+               
+                // On crée le texte avec la vue
+                ->setBody(
+                    
+                        'Merci pour votre pré_inscription, nous vous recontacterons dès que possible.
+                        Ares Formation'
+                    ,
+                    'text/html'
+                )
+                ;
+                
+                $mailer->send($message);
              
             return $this->redirectToRoute('pre_inscription_confirmation',['id'=> $preInscription->getId()]);
        

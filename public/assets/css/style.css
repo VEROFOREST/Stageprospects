@@ -91,7 +91,7 @@ td{
 	font-size: 1.2em;
 	font-style: italic;
 	color: #30498D ;
-	font-weight: bolder;
+	/* font-weight: bolder; */
 }
 .repChoice{
 	font-size: 1.2em;
@@ -108,4 +108,8 @@ h6{
 	font-weight: bolder;
 	
 
+}
+.form-control{
+	color: #30498D;
+	font-style: italic;
 }

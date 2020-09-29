@@ -14,6 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+
+
 
 
 /**
@@ -34,7 +37,7 @@ class ProspectController extends AbstractController
     /**
      * @Route("/new/{id}", name="prospect_new", methods={"GET","POST"})
      */
-    public function new(Parcours $parcour, Request $request, MembreRepository $membreRepository, EtapeRepository $etapeRepository): Response
+    public function new(Parcours $parcour, Request $request, MembreRepository $membreRepository, EtapeRepository $etapeRepository,\Swift_Mailer $mailer): Response
     {
         $prospect = new Prospect();
         $form = $this->createForm(ProspectType::class, $prospect);
@@ -55,6 +58,28 @@ class ProspectController extends AbstractController
             $prospect->setActif(-2);
             $entityManager->persist($prospect);
             $entityManager->flush();
+            // envoi d'email de confirmation.
+            // dd($prospect->getEmail());
+            
+            $message = (new \Swift_Message('demande de renseignements'))
+            ->setFrom('vxforest@gmail.com')
+            ->setTo($prospect->getEmail())
+            ->setBody(
+                    '<h1>Merci de l\'intérêt que vous nous portez, vos coordonnées sont enregistrées, nous vous recontacterons dès que possible.</h1>
+                                Ares Formation'
+                ,
+                    'text/html'
+             )
+            ;
+            $message->SMTPOptions = array(
+                'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+                )
+                );
+
+            $mailer->send($message); 
 
             return $this->redirectToRoute('prospect_confirmation',['id'=> $prospect->getId()]);
 

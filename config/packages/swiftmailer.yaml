@@ -1,0 +1,18 @@
+swiftmailer:
+    url: '%env(MAILER_URL)%'
+    transport: 'gmail' 
+    username: vxforest@gmail.com
+    password: tresor71
+    host: smtp.gmail.com
+    port: 587
+    encryption: ssl 
+    auth-mode: login
+    
+    stream_options:
+     ssl:
+        allow_self_signed: true 
+        verify_peer: false 
+        verify_peer_name: false 
+    
+    # spool: { type: 'memory' }
+  

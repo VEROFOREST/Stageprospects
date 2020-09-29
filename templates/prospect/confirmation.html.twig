@@ -8,13 +8,13 @@
     <div class="row">
         <div class="content col s12">
             <section class="banner center-align" style="margin: 5rem 0;">
-                <h1 class="show">Merci!<br>Votre demande de contact est enregistrée</h1>
+                <h1 class="show">Merci de l'intérêt que vous nous portez!</h1>
                 <div class="center-align">
                     <h5 class="text-center color_brand_primary">Recapitulatif</h5>
-                   <p>Pré-inscription à la formation  {{prospect.nom}}<br>
-                    d'un montant de  <br> à la charge de br>
-                    mode de paiement : </p>
-                    <p>Si vous nous n'avez pas reçu cet email vérifiez votre boîte de réception spam ou contactez notre <a href="mailto:contact@aresformation.com">secrétariat Ares Formation</a>.</p>
+                   <p> {{prospect.prenom}} {{prospect.nom}}, merci de l'intérêt porté à Ares Formation <br>
+                   Votre demande de renseignement pour la formation <br> {{prospect.parcours.formation.type}} est prise en compte !<br>
+                   Nous vous recontacterons prochainement.</p>
+                    <p>Si vous nous n'avez pas reçu d'email de confirmation, vérifiez votre boîte de réception, spam ou contactez notre <a href="mailto:contact@aresformation.com">secrétariat Ares Formation</a>.</p>
                 </div>
             </section>
     </div>
